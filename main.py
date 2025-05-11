@@ -17,8 +17,8 @@ def main(input_path, output_path):
     ensure_directories()
 
     # Step 1: Outline players, ball, and court
-    # print("Step 1: Processing video with main1.py...")
-    # main1(input_path, OUTLINED_VIDEO)
+    print("Step 1: Processing video with main1.py...")
+    main1(input_path, OUTLINED_VIDEO)
 
     # Step 2: Generate 2D projection and combine with original
     print("Step 2: Generating 2D projection with main2.py...")
