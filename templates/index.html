@@ -1,23 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Tennis Analyzer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0e3c63;
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        h2 {
+            color: #000000;
+        }
+
+        p.description {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .result-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .download-link:hover {
+            background-color: #0056b3;
+        }
+
+        video {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Upload Tennis Video</h1>
+
+<header>
+    <h1>🎾 Tennis Match Analyzer</h1>
+</header>
+
+<main>
+    <p class="description">
+        Upload your match footage to receive advanced analytics including ball tracking, player movement, stroke classification, and predictive visualizations – all powered by deep learning.
+    </p>
+
     <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="video" required />
-        <input type="submit" value="Analyze" />
+        <label for="video">Select a tennis match video:</label>
+        <input type="file" name="video" id="video" required />
+        <input type="submit" value="Analyze">
     </form>
 
     {% if output_filename %}
-    <h2>Analysis Complete!</h2>
-    <a href="{{ url_for('download', filename=output_filename) }}" download>Download Output Video</a>
-    <br><br>
-    <!-- <video width="600" controls>
-        <source src="{{ url_for('download', filename=output_filename) }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video> -->
+    <div class="result-section">
+        <h2>✅ Analysis Complete</h2>
+        <a class="download-link" href="{{ url_for('download', filename=output_filename) }}" download title="Click to download the analyzed video">
+            ⬇️ Download Output Video
+        </a>
+
+        <!-- <video controls>
+            <source src="{{ url_for('download', filename=output_filename) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video> -->
+    </div>
     {% endif %}
+</main>
+
+<footer>
+    Built with Flask · Powered by AI · © 2025 Tennis Analyzer
+</footer>
+
 </body>
 </html>
