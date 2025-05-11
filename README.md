@@ -46,15 +46,15 @@ Once all prerequisites are installed, follow these steps:
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Adarsh-Agrahari/FYP-AA
+git clone https://github.com/Adarsh-Agrahari/FYP
 
-cd FYP-AA
+cd FYP
 ```
 #### 2. Run the application
 With uv, everything is automatic:
 
 ```bash
-uv run main.py
+uv run app.py
 ```
 
 This command will:
