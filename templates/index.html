@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tennis Analyzer</title>
+</head>
+<body>
+    <h1>Upload Tennis Video</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="video" required />
+        <input type="submit" value="Analyze" />
+    </form>
+
+    {% if output_filename %}
+    <h2>Analysis Complete!</h2>
+    <a href="{{ url_for('download', filename=output_filename) }}" download>Download Output Video</a>
+    <br><br>
+    <!-- <video width="600" controls>
+        <source src="{{ url_for('download', filename=output_filename) }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video> -->
+    {% endif %}
+</body>
+</html>
