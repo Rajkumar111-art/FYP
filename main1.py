@@ -499,7 +499,7 @@ def video_process(video_path, show_video=False, include_video=True,
 
     statistics = Statistics(court_detector, detection_model)
     heatmap = statistics.get_player_position_heatmap()
-    statistics.display_heatmap(heatmap, court_detector.court_reference.court, title='Heatmap')
+    # statistics.display_heatmap(heatmap, court_detector.court_reference.court, title='Heatmap')
     statistics.get_players_dists()
 
     add_data_to_video(input_video=video_path, court_detector=court_detector, players_detector=detection_model,

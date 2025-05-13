@@ -218,8 +218,7 @@ def get_center_ball_dist(output, x_true, y_true, num_classes=256):
             heatmap *= 255
 
         # find the circle in image with 2<=radius<=7
-        circles = cv2.HoughCircles(heatmap, cv2.HOUGH_GRADIENT, dp=1, minDist=1, param1=50, param2=2, minRadius=2,
-                                   maxRadius=7)
+        circles = cv2.HoughCircles(heatmap, cv2.HOUGH_GRADIENT, dp=1, minDist=1, param1=50, param2=2, minRadius=2, maxRadius=7)
         # check if there have any tennis be detected
         if circles is not None:
             # if only one tennis be detected

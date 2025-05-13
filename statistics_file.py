@@ -84,7 +84,7 @@ class Statistics:
         heatmap = cv2.cvtColor(np.uint8(heatmap), cv2.COLOR_GRAY2BGR)
         heatmap[:, :, 1:] = 0
 
-        self.display_heatmap(heatmap, self.court_tracker.court_reference.court, cmap=None, title='Players path')
+        # self.display_heatmap(heatmap, self.court_tracker.court_reference.court, cmap=None, title='Players path')
         print('Top player distance is: {:.2f} m'.format(top_dist / 100))
         print('Bottom player distance is: {:.2f} m'.format(bottom_dist / 100))
 

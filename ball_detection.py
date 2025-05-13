@@ -3,12 +3,9 @@ import cv2
 import torch
 from PIL import Image, ImageDraw
 import matplotlib.pyplot as plt
-from scipy import signal
-from scipy.signal import find_peaks
 
 from ball_tracker_net import BallTrackerNet
 from detection import center_of_box
-from utils import get_video_properties
 
 
 def combine_three_frames(frame1, frame2, frame3, width, height):
@@ -163,48 +160,3 @@ class BallDetector:
         plt.plot(range(len(player_1_y_values)), player_1_y_values, color='r')
         plt.plot(range(len(player_2_y_values)), player_2_y_values, color='g')
         plt.show()
-
-
-if __name__ == "__main__":
-    ball_detector = BallDetector('saved states/tracknet_weights_lr_1.0_epochs_150_last_trained.pth')
-    cap = cv2.VideoCapture('input_videos/input_video-3.mp4')
-    # get videos properties
-    fps, length, v_width, v_height = get_video_properties(cap)
-
-    frame_i = 0
-    while True:
-        ret, frame = cap.read()
-        frame_i += 1
-        if not ret:
-            break
-
-        ball_detector.detect_ball(frame)
-
-
-    cap.release()
-    # cv2.destroyAllWindows()
-
-    from scipy.interpolate import interp1d
-
-    y_values = ball_detector.xy_coordinates[:,1]
-
-    new = signal.savgol_filter(y_values, 3, 2)
-
-    x = np.arange(0, len(new))
-    indices = [i for i, val in enumerate(new) if np.isnan(val)]
-    x = np.delete(x, indices)
-    y = np.delete(new, indices)
-    f = interp1d(x, y, fill_value="extrapolate")
-    f2 = interp1d(x, y, kind='cubic', fill_value="extrapolate")
-    xnew = np.linspace(0, len(y_values), num=len(y_values), endpoint=True)
-    plt.plot(np.arange(0, len(new)), new, 'o',xnew,
-             f2(xnew), '-r')
-    plt.legend(['data', 'inter'], loc='best')
-    plt.show()
-
-    positions = f2(xnew)
-    peaks, _ = find_peaks(positions, distance=30)
-    a = np.diff(peaks)
-    plt.plot(positions)
-    plt.plot(peaks, positions[peaks], "x")
-    plt.show()
