@@ -8,7 +8,7 @@ from utils import *
 import warnings
 warnings.filterwarnings('ignore')
 
-def main2(OUTLINED_VIDEO, FINAL_VIDEO):
+def projection_part(OUTLINED_VIDEO, FINAL_VIDEO):
     court_extractor_model = CourtLineDetector(r"models/keypoints_model.pth")
     ball_tracking_model = YOLO(r'models/best.pt')
     video_frames = read_video(OUTLINED_VIDEO)

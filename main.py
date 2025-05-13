@@ -1,5 +1,5 @@
-from main1 import main1
-from main2 import main2
+from detection_part import detection_part
+from projection_part import projection_part
 import os
 
 # Define input and output paths
@@ -17,15 +17,15 @@ def main(input_path, output_path):
     ensure_directories()
 
     # Step 1: Outline players, ball, and court
-    print("Step 1: Processing video with main1.py...")
-    main1(input_path, OUTLINED_VIDEO)
+    print("Step 1: Processing video with detection part...")
+    detection_part(input_path, OUTLINED_VIDEO)
 
     # Step 2: Generate 2D projection and combine with original
-    print("Step 2: Generating 2D projection with main2.py...")
-    main2(OUTLINED_VIDEO, FINAL_VIDEO)
+    print("Step 2: Generating 2D projection with projection part...")
+    projection_part(OUTLINED_VIDEO, FINAL_VIDEO)
 
     print("✅ Processing complete.")
     print(f"Final output video: {FINAL_VIDEO}")
 
 if __name__ == "__main__":
-    main()
+    main(INPUT_VIDEO, FINAL_VIDEO)

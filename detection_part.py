@@ -511,7 +511,7 @@ def video_process(video_path, show_video=False, include_video=True,
     # ball_detector.show_y_graph(detection_model.player_1_boxes, detection_model.player_2_boxes)
 
 
-def main1(INPUT_VIDEO, OUTLINED_VIDEO):
+def detection_part(INPUT_VIDEO, OUTLINED_VIDEO):
     s = time.time()
     video_process(video_path=INPUT_VIDEO, show_video=True, stickman=True, stickman_box=False, smoothing=True, court=True, top_view=True)
     print(f'Total computation time : {time.time() - s} seconds')
